@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Accidentes Viales - D3.js</title>
+
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+
+<body>
+  <header class="encabezado">
+    <div>
+      <p class="eyebrow">Dashboard ejecutivo</p>
+      <h1>Visualizacion de Accidentes Viales</h1>
+      <p class="subtitulo">Analisis operativo por barrio, severidad y comportamiento temporal.</p>
+    </div>
+  </header>
+
+  <main class="contenedor">
+    <section class="panel-filtros" aria-label="Filtros del dashboard">
+      <div class="panel-titulo">
+        <h2>Filtros</h2>
+        <span id="estadoFiltros" class="estado-filtros">Cargando datos...</span>
+      </div>
+
+      <div class="filtros-grid">
+        <div class="campo">
+          <label for="topBarrios">Cantidad de barrios a mostrar</label>
+          <div class="rango-control">
+            <input type="range" id="topBarrios" min="1" max="20" value="10" />
+            <output id="valorTop" for="topBarrios">10</output>
+          </div>
+        </div>
+
+        <div class="campo">
+          <label for="filtroBarrio">Barrio</label>
+          <select id="filtroBarrio">
+            <option value="todos">Todos los barrios</option>
+          </select>
+        </div>
+
+        <div class="campo">
+          <label for="fechaInicio">Fecha inicial</label>
+          <input type="date" id="fechaInicio" />
+        </div>
+
+        <div class="campo">
+          <label for="fechaFin">Fecha final</label>
+          <input type="date" id="fechaFin" />
+        </div>
+
+        <div class="campo acciones">
+          <button id="limpiarFiltros" type="button">Restablecer</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="metricas" aria-label="Indicadores principales">
+      <article class="tarjeta">
+        <span>Accidentes</span>
+        <strong id="totalAccidentes">0</strong>
+        <small>Registros del Top actual</small>
+      </article>
+
+      <article class="tarjeta">
+        <span>Barrios</span>
+        <strong id="totalBarrios">0</strong>
+        <small>Barrios mostrados</small>
+      </article>
+
+      <article class="tarjeta">
+        <span>Heridos</span>
+        <strong id="totalHeridos">0</strong>
+        <small>Personas heridas</small>
+      </article>
+
+      <article class="tarjeta">
+        <span>Vehiculos</span>
+        <strong id="totalVehiculos">0</strong>
+        <small>Vehiculos involucrados</small>
+      </article>
+    </section>
+
+    <section class="dashboard-grid">
+      <article class="grafico grafico-ancho">
+        <div class="grafico-header">
+          <div>
+            <span class="numero">01</span>
+            <h2>Accidentes por barrio</h2>
+          </div>
+        </div>
+        <div id="graficoBarras" class="chart"></div>
+      </article>
+
+      <article class="grafico grafico-ancho">
+        <div class="grafico-header">
+          <div>
+            <span class="numero">02</span>
+            <h2>Evolucion mensual</h2>
+          </div>
+        </div>
+        <div id="graficoLinea" class="chart"></div>
+      </article>
+
+      <article class="grafico">
+        <div class="grafico-header">
+          <div>
+            <span class="numero">03</span>
+            <h2>Distribucion de heridos</h2>
+          </div>
+        </div>
+        <div id="graficoHistograma" class="chart"></div>
+      </article>
+
+      <article class="grafico">
+        <div class="grafico-header">
+          <div>
+            <span class="numero">04</span>
+            <h2>Gravedad</h2>
+          </div>
+        </div>
+        <div id="graficoDona" class="chart"></div>
+      </article>
+
+      <article class="grafico grafico-ancho">
+        <div class="grafico-header">
+          <div>
+            <span class="numero">05</span>
+            <h2>Vehiculos y heridos</h2>
+          </div>
+        </div>
+        <div id="graficoDispersion" class="chart"></div>
+      </article>
+
+      <article class="grafico grafico-ancho">
+        <div class="grafico-header">
+          <div>
+            <span class="numero">06</span>
+            <h2>Heridos en barrios principales</h2>
+          </div>
+        </div>
+        <div id="graficoCaja" class="chart"></div>
+      </article>
+
+      <article class="grafico grafico-ancho">
+        <div class="grafico-header">
+          <div>
+            <span class="numero">07</span>
+            <h2>Mapa de calor por anio y mes</h2>
+          </div>
+        </div>
+        <div id="graficoCalor" class="chart"></div>
+      </article>
+    </section>
+
+    <section class="hallazgos">
+      <div class="grafico-header">
+        <div>
+          <span class="numero">08</span>
+          <h2>Hallazgos principales</h2>
+        </div>
+      </div>
+      <ol id="listaHallazgos"></ol>
+    </section>
+  </main>
+
+  <footer>
+    <p>Proyecto de visualizacion de datos - D3.js</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
